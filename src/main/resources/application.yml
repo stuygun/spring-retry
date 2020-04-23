@@ -1,0 +1,6 @@
+amazonProperties:
+  endpointUrl: https://s3.eu-west-1.amazonaws.com
+  bucketName: spring-retry
+  accessKey:
+  secretKey:
+

@@ -1,0 +1,48 @@
+plugins {
+    id "org.springframework.boot" version "${springBootVersion}"
+    id "io.spring.dependency-management" version "${springDependencyManagementVersion}"
+    id "java"
+    id "eclipse"
+    id "io.freefair.lombok" version "${lombokPluginVersion}"
+    id "com.diffplug.gradle.spotless" version "${spotlessVersion}"
+    id "org.sonarqube" version "${sonarVersion}"
+}
+
+group = 'com.tuygun.sandbox.spring'
+version = '${appVersion}'
+description = 'spring-retry-aws-s3'
+sourceCompatibility = '11'
+
+repositories {
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2')
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-batch")
+    implementation("org.springframework.boot:spring-boot-loader-tools")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-logging")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    implementation("org.springframework.retry:spring-retry:${springRetryVersion}")
+
+    implementation("org.projectlombok:lombok:${lombokVersion}")
+    implementation("com.amazonaws:aws-java-sdk:${amazonSdkVersion}")
+    implementation("com.h2database:h2:${h2Version}")
+
+    //AWS Warning: 'If you are using Java 9+, you will need to include javax.xml.bind:jaxb-api as a dependency.'
+    runtimeOnly ("javax.xml.bind:jaxb-api:${jaxbVersion}")
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
