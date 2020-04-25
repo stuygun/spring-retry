@@ -10,25 +10,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 @Configuration
 public class AWSConfiguration {
-    @Value("${amazonProperties.accessKey}")
-    private String accessKey;
+  @Value("${amazonProperties.accessKey}")
+  private String accessKey;
 
-    @Value("${amazonProperties.secretKey}")
-    private String secretKey;
+  @Value("${amazonProperties.secretKey}")
+  private String secretKey;
 
-    @Bean
-    public AWSCredentialsProvider amazonCredentialProvider() {
-        AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
-        return new AWSStaticCredentialsProvider(credentials);
-    }
+  @Bean
+  public AWSCredentialsProvider amazonCredentialProvider() {
+    AWSCredentials credentials = new BasicAWSCredentials(this.accessKey, this.secretKey);
+    return new AWSStaticCredentialsProvider(credentials);
+  }
 
-    @Bean
-    public AmazonS3 amazonS3Client() {
-        return AmazonS3ClientBuilder.standard()
-                .withCredentials(amazonCredentialProvider())
-                .build();
-    }
+  @Bean
+  public AmazonS3 amazonS3Client() {
+    return AmazonS3ClientBuilder.standard().withCredentials(amazonCredentialProvider()).build();
+  }
 }

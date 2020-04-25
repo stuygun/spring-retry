@@ -12,7 +12,7 @@ import org.springframework.retry.support.RetryTemplate;
 @EnableRetry
 public class RetryConfiguration {
   @Bean
-  public DefaultListenerSupport defaultListenerSupport(){
+  public DefaultListenerSupport defaultListenerSupport() {
     return new DefaultListenerSupport();
   }
 

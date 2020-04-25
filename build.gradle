@@ -39,6 +39,8 @@ dependencies {
     implementation("com.amazonaws:aws-java-sdk:${amazonSdkVersion}")
     implementation("com.h2database:h2:${h2Version}")
 
+    implementation("org.apache.commons:commons-lang3:${commonsLang3Version}")
+
     //AWS Warning: 'If you are using Java 9+, you will need to include javax.xml.bind:jaxb-api as a dependency.'
     runtimeOnly ("javax.xml.bind:jaxb-api:${jaxbVersion}")
 }
